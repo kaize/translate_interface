@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 1.9.3
+env:
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+before_script:
+  - mysql -e 'create database localizer_test'
+  - psql -c 'create database localizer_test' -U postgres
