@@ -6,7 +6,7 @@ Localizer::Application.routes.draw do
 
     resource :session #, only: [:new, :create, :destroy]
 
-    resource :welcome, only: [:index]
+    #:wqresource :welcome, only: [:index]
 
   end
 
