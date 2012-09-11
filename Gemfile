@@ -29,7 +29,7 @@ gem 'haml-rails'
 
 gem 'bootstrap-generators', git: 'https://github.com/decioferreira/bootstrap-generators.git'
 
-gem 'bootstrap-rails'
+gem 'twitter-bootstrap-rails'
 
 gem 'simple_form'
 
