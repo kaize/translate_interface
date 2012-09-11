@@ -2,23 +2,6 @@ require 'test_helper'
 
 class Web::UsersControllerTest < ActionController::TestCase
   setup do
-    FactoryGirl.define do
-      factory :user, class: UserEditType do
-        name                  "vasua@pupkin.com"
-        password              "sekret"
-        password_confirmation "sekret"
-      end
-    end
-
-    FactoryGirl.define do
-      factory :general_failure, class: UserEditType do
-        name                  "failure@generals.gov"
-        password              "sekret"
-        password_confirmation "segret"
-      end
-    end
-
-    @user = create(:user)
   end
 
   test "should get index" do
@@ -34,32 +17,51 @@ class Web::UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: FactoryGirl.attributes_for(:user)
+      post :create, user: attributes_for(:user)
+
+      assert_response :success
+
+      print "#{attributes_for(:user)}"
     end
 
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should show user" do
+    @user = create(:user)
+
     get :show, id: @user
     assert_response :success
   end
 
   test "should get edit" do
+    @user = create(:user)
+
     get :edit, id: @user
     assert_response :success
   end
 
   test "should update user" do
-    put :update, id: @user, user: { name: @user.name, password_digest: @user.password_digest }
+    @user = create(:user)
+
+    put :update, id: @user, user: attributes_for(:update_user)
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should destroy user" do
+    @user = create(:user)
+
     assert_difference('User.count', -1) do
       delete :destroy, id: @user
     end
 
     assert_redirected_to users_path
+  end
+
+  test "should fail changing if password not confirmed" do
+    @user = create(:user)
+
+    put :update, id: @user, user: attributes_for(:user_no_confirmation)
+    assert_response :falture
   end
 end
