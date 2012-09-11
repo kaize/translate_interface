@@ -1,6 +1,7 @@
 ---
 ru:
   simple_form:
+    submit: 'Вход'
     error_notification:
       default_message: Ошыпко :(
       hints:

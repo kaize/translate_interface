@@ -4,6 +4,7 @@ en:
   simple_form:
     'yes': 'Yes'
     'no': 'No'
+    submit: 'submit'
     required:
       text: required
       mark: ! '*'
