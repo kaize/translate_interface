@@ -6,5 +6,4 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
 before_script:
-  - mysql -e 'create database localizer_test'
-  - psql -c 'create database localizer_test' -U postgres
+  - psql -c 'create user vagrant; alter user vagrant superuser; create database localizer_test' -U postgres
