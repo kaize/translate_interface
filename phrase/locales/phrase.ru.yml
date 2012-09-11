@@ -1,0 +1,20 @@
+---
+ru:
+  simple_form:
+    error_notification:
+      default_message: Ошыпко :(
+      hints:
+        password: ПАРОЛЕПРОБЛЕМЫ
+        username: Где имя?
+      labels:
+        password: Абырвалг
+        user:
+          edit:
+            email: Это не мыло!
+          new:
+            email: Это не мыло!
+    'no': Не-а
+    required:
+      mark: ->
+      text: Не забудь
+    'yes': Угу
