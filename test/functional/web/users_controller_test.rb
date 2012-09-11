@@ -2,6 +2,8 @@ require 'test_helper'
 
 class Web::UsersControllerTest < ActionController::TestCase
   setup do
+    @user = create(:user)
+    sign_in(@user)
   end
 
   test "should get index" do
@@ -19,12 +21,8 @@ class Web::UsersControllerTest < ActionController::TestCase
     assert_difference('User.count') do
       post :create, user: attributes_for(:user)
 
-      assert_response :success
-
-      print "#{attributes_for(:user)}"
+      assert_response :redirect
     end
-
-    assert_redirected_to user_path(assigns(:user))
   end
 
   test "should show user" do
@@ -45,7 +43,8 @@ class Web::UsersControllerTest < ActionController::TestCase
     @user = create(:user)
 
     put :update, id: @user, user: attributes_for(:update_user)
-    assert_redirected_to user_path(assigns(:user))
+
+    assert_response :redirect
   end
 
   test "should destroy user" do
@@ -55,13 +54,7 @@ class Web::UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user
     end
 
-    assert_redirected_to users_path
+    assert_response :redirect
   end
 
-  test "should fail changing if password not confirmed" do
-    @user = create(:user)
-
-    put :update, id: @user, user: attributes_for(:user_no_confirmation)
-    assert_response :falture
-  end
 end
