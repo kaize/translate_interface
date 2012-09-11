@@ -1,4 +1,4 @@
 class Web::WelcomeController < ApplicationController
-  def show
+  def index
   end
 end

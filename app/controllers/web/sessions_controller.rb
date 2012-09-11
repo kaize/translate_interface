@@ -3,7 +3,7 @@ class Web::SessionsController < Web::ApplicationController
   end
 
   def create
-    user = UserEditType.find_by_name(params[:user][:name])
+    user = UserEditType.find_by_email(params[:user][:email])
 
     if user.try(:authenticate, params[:user][:password])
       reset_session
@@ -13,7 +13,7 @@ class Web::SessionsController < Web::ApplicationController
       flash.now[:notice] = t('login.successful')
       redirect_to users_path
     else
-      flash.now[:error] = 'lol'
+      flash.now[:error] = t('login.failed')
       render action: :new
     end
   end

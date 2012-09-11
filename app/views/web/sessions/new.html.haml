@@ -2,6 +2,6 @@
   :defaults => {:input_html => {:class => 'input-xlarge'}} do |f|
   %legend= t('.authorization')
   = f.error_notification
-  = f.input :name
+  = f.input :email
   = f.input :password
-  = f.button :submit, t('.enter'), :class => 'btn btn-primary btn-large'
+  = f.button :submit, t('simple_form.submit'), :class => 'btn btn-primary btn-large'

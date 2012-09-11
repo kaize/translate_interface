@@ -6,7 +6,7 @@ Localizer::Application.routes.draw do
 
     resource :session #, only: [:new, :create, :destroy]
 
-    root to: 'welcome#show'
+    root to: 'welcome#index'
   end
 
   # The priority is based upon order of creation:
