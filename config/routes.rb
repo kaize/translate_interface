@@ -4,7 +4,7 @@ Localizer::Application.routes.draw do
   scope module: :web do
     resources :users
 
-    resource :session #, only: [:new, :create, :destroy]
+    resource :session, only: [:new, :create, :destroy]
 
     #:wqresource :welcome, only: [:index]
 

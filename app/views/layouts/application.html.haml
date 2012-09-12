@@ -29,13 +29,14 @@
           .nav-collapse
             %ul.nav
               %li.active
-                %a{:href => "/welcome#index"}= t 'application.home'
+                %a{:href => "/"}= t 'application.home'
               %li
-                %a{:href => "#about"}= t 'application.about'
+                %a{:href => "/about"}= t 'application.about'
               %li
                 %a{:href => "/users"}= t 'application.users_list'
               %li
-                =link_to 'Log out', session_path, method: :delete
+                - if signed_in? then
+                  = link_to 'Log out', session_path, method: :delete
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do

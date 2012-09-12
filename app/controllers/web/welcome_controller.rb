@@ -1,4 +1,4 @@
-class Web::WelcomeController < ApplicationController
+class Web::WelcomeController < Web::ProtectedController
   def index
   end
 end
