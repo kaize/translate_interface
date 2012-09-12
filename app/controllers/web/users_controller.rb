@@ -3,7 +3,9 @@ class Web::UsersController < Web::ProtectedController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.
+        page(params[:page]).
+        per(params[:per_page])
   end
 
   # GET /users/1
