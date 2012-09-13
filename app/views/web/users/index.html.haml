@@ -1,12 +1,10 @@
-= "there must be pagination! <it is blank - #{paginate(@users).class}>\n"
-- paginate(@users) + "\n"
-= "collection is blank - #{@users.blank?}\n"
-
 .page-header
   = link_to new_user_path, :class => 'btn btn-primary' do
     %i.icon-plus.icon-white
     New User
   %h1 Listing users
+
+= paginate(@users)
 
 %table.table.table-bordered.table-striped
   %thead
@@ -27,4 +25,3 @@
         %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
 
 = paginate @users
-

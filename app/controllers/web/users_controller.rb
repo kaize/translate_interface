@@ -4,6 +4,7 @@ class Web::UsersController < Web::ProtectedController
   # GET /users.json
   def index
     @users = User.
+        order("name").
         page(params[:page]).
         per(params[:per_page])
   end
@@ -55,6 +56,6 @@ class Web::UsersController < Web::ProtectedController
     @user = User.find(params[:id])
     @user.destroy
 
-      redirect_to users_url
+      redirect_to users_path
   end
 end
