@@ -8,7 +8,6 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,11 +23,8 @@ end
 gem 'jquery-rails'
 
 gem 'phrase'
-gem 'i18n'
 
 gem 'haml-rails'
-
-gem 'bootstrap-generators', git: 'https://github.com/decioferreira/bootstrap-generators.git'
 
 gem 'twitter-bootstrap-rails'
 

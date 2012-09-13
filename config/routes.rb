@@ -1,16 +1,12 @@
 Localizer::Application.routes.draw do
-  get "welcome/show"
-
   scope module: :web do
     resources :users
 
     resource :session, only: [:new, :create, :destroy]
 
-    #:wqresource :welcome, only: [:index]
-
+    root to: 'welcome#index'
   end
 
-  root to: 'web/welcome#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
