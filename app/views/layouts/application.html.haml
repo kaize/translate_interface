@@ -25,11 +25,9 @@
           .nav-collapse
             %ul.nav
               %li.active
-                %a{:href => "/"}= t 'application.home'
+                %a{:href => root_path}= t 'application.home'
               %li
-                %a{:href => "/about"}= t 'application.about'
-              %li
-                %a{:href => "/users"}= t 'application.users_list'
+                %a{:href => users_path}= t 'application.users_list'
               %li
                 - if signed_in? then
                   = link_to 'Log out', session_path, method: :delete
