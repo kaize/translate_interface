@@ -1,5 +1,5 @@
 class Key < ActiveRecord::Base
-  attr_accessible :name, :project_id
+  attr_accessible :name, :project
 
   belongs_to :project
 

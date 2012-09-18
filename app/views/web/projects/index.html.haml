@@ -1,0 +1,25 @@
+.page-header
+  = link_to new_project_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Project
+  %h1 Listing projects
+
+= paginate(@projects)
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= t('simple_form.user.name')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= project.name
+        %td= link_to 'Show', project
+        %td= link_to 'Edit', edit_project_path(project)
+        %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+
+= paginate(@projects)

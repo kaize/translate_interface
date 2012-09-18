@@ -1,5 +1,5 @@
 class Translation < ActiveRecord::Base
-  attr_accessible :data, :key_id, :locale_id, :member_id
+  attr_accessible :data, :key, :locale, :member
 
   belongs_to :key
   belongs_to :locale

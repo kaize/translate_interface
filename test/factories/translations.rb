@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :translation do
-    data "MyString"
-    key_id 1
-    locale_id 1
-    member_id 1
+    data "test translaton"
+    key
+    locale
+    member
   end
 end

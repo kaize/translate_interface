@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :locale do
-    name "MyString"
+    name "en"
   end
 end

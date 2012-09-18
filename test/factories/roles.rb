@@ -2,6 +2,10 @@
 
 FactoryGirl.define do
   factory :role do
-    name "MyString"
+    name "translator"
+  end
+
+  factory :owner, :class => Role do
+    name "owner"
   end
 end

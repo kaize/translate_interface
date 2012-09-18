@@ -45,5 +45,6 @@ group :test do
   gem 'tconsole'
 end
 
-
 gem 'unicorn-rails'
+
+#gem 'friendly_id'

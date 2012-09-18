@@ -1,9 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :member do
-    user_id 1
-    role_id 1
-    project_id 1
+  factory :translator do
+    user
+    role
+    project
   end
 end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :project_locale do
-    locale_id 1
-    project_id 1
+    locale
+    project
   end
 end
