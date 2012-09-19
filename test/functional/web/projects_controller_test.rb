@@ -2,11 +2,12 @@ require 'test_helper'
 
 class Web::ProjectsControllerTest < ActionController::TestCase
   setup do
-    @project_attributes = attributes_for(:project)
-    @project = create(:project)
-
+    # side effect - for current_user usage
     user = create(:user)
     sign_in(user)
+
+    @project_attributes = attributes_for(:project)
+    @project = create(:project)
   end
 
   teardown do
@@ -35,6 +36,12 @@ class Web::ProjectsControllerTest < ActionController::TestCase
 
       assert_response :redirect
     end
+  end
+
+  test "current user must own the project created" do
+    post :create, @project_attributes
+
+    assert_equal current_user, Project.last.owner.user
   end
 
   test "should get edit" do

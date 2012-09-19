@@ -21,10 +21,10 @@ class Web::ProjectsController < Web::ProtectedController
   end
 
   def create
-    @project = ProjectService.create :user => current_user,
-                                     :id => params[:id]
+    @project = Project.new params[:project]
+    @project.members.build :user => current_user, :role => Role.owner
 
-    if @project
+    if @project.save
       redirect_to @project, notice: t('.created')
     else
       render action: "new"
