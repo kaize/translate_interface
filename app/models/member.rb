@@ -10,4 +10,6 @@ class Member < ActiveRecord::Base
   has_many :translations
 
   scope :owners, where(:role_id => Role.owner)
+
+  scope :owner_for, lambda {|project| owners.where :project_id => project}
 end

@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
   scope :web, by_name
 
   def owner
-    owner_wrapped = Member.owners.where :project_id => self
-    owner_wrapped.first
+    @owner ||= User.owners_for_project(self).last
   end
 end

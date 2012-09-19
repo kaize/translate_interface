@@ -22,7 +22,10 @@ class Web::ProjectsController < Web::ProtectedController
 
   def create
     @project = Project.new params[:project]
-    @project.members.build :user => current_user, :role => Role.owner
+
+    owner = Role.find_by_name(:owner)
+
+    @project.members.build :user => current_user, :role => role
 
     if @project.save
       redirect_to @project, notice: t('.created')
