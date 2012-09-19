@@ -2,8 +2,8 @@ require 'test_helper'
 
 class Web::UsersControllerTest < ActionController::TestCase
   setup do
-    @user = create(:user)
-    sign_in(@user)
+    user = create(:user)
+    sign_in(user)
   end
 
   test "should get index" do
@@ -18,43 +18,44 @@ class Web::UsersControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
-    assert_difference('User.count') do
-      post :create, user: attributes_for(:user)
+    attrs = attributes_for(:user)
+    post :create, user: attrs
 
-      assert_response :redirect
-    end
+    assert_response :redirect
+
+    assert_equal attrs[:email], User.last.email
   end
 
   test "should show user" do
-    @user = create(:user)
+    user = create(:user)
 
-    get :show, id: @user
+    get :show, id: user
     assert_response :success
   end
 
   test "should get edit" do
-    @user = create(:user)
+    user = create(:user)
 
-    get :edit, id: @user
+    get :edit, id: user
     assert_response :success
   end
 
   test "should update user" do
-    @user = create(:user)
+    user = create(:user)
 
-    put :update, id: @user, user: attributes_for(:update_user)
+    put :update, id: user, user: attributes_for(:update_user)
 
     assert_response :redirect
   end
 
   test "should destroy user" do
-    @user = create(:user)
+    user = create(:user)
 
-    assert_difference('User.count', -1) do
-      delete :destroy, id: @user
-    end
+    delete :destroy, id: user
 
     assert_response :redirect
+
+    assert User.find_by_email(user.email).nil?
   end
 
 end

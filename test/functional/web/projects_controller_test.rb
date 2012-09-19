@@ -6,22 +6,19 @@ class Web::ProjectsControllerTest < ActionController::TestCase
     user = create(:user)
     sign_in(user)
 
-    @project_attributes = attributes_for(:project)
-    @project = create(:project)
-  end
-
-  teardown do
-    sign_out
+    create(:role, name: "owner")
   end
 
   test "should get index" do
+    project = create(:project)
     get :index
     assert_response :success
     assert_not_nil assigns(:projects)
   end
 
   test "should show project" do
-    get :show, id: @project
+    project = create(:project)
+    get :show, id: project
     assert_response :success
   end
 
@@ -31,38 +28,54 @@ class Web::ProjectsControllerTest < ActionController::TestCase
   end
 
   test "should create project" do
-    assert_difference('Project.count') do
-      post :create, @project_attributes
+    project_attributes = attributes_for(:project)
 
-      assert_response :redirect
-    end
+    post :create, project_attributes
+
+    assert_response :redirect
+
+    project = Project.last
+
+    assert_not_nil project
   end
 
   test "current user must own the project created" do
-    post :create, @project_attributes
+    user = current_user
+    distinctive_name = "the other project"
+    project_attributes = attributes_for(:project, name: distinctive_name)
 
-    assert_equal current_user, Project.last.owner.user
+    post :create, project: project_attributes
+
+    project = Project.last
+
+    assert_equal distinctive_name, project.name
+    assert_equal user, project.owner
   end
 
   test "should get edit" do
-    get :edit, id: @project
+    project = create :project
+    get :edit, id: project
     assert_response :success
   end
 
   test "should update project" do
-    put :update, id: @project, project: @project_attributes
+    project = create :project
+    project_attributes = {name: "new name"}
+
+    put :update, id: project, project: project_attributes
 
     assert_response :redirect
+    assert_equal "new name", Project.last.name
   end
 
   test "should destroy project" do
-    @project = create(:project)
+    project = create(:project)
 
-    assert_difference('Project.count', -1) do
-      delete :destroy, id: @project
-    end
+    delete :destroy, id: project
 
     assert_response :redirect
+
+    assert Project.find_by_name(project.name).nil?
   end
 
 end

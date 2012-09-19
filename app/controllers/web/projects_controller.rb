@@ -25,7 +25,7 @@ class Web::ProjectsController < Web::ProtectedController
 
     owner = Role.find_by_name(:owner)
 
-    @project.members.build :user => current_user, :role => role
+    @project.members.build :user => current_user, :role => owner
 
     if @project.save
       redirect_to @project, notice: t('.created')
