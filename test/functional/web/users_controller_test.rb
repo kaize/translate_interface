@@ -55,7 +55,7 @@ class Web::UsersControllerTest < ActionController::TestCase
 
     assert_response :redirect
 
-    assert User.find_by_email(user.email).nil?
+    assert !User.exists?(user)
   end
 
 end

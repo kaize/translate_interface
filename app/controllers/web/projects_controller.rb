@@ -1,9 +1,5 @@
 class Web::ProjectsController < Web::ProtectedController
 
-#  extend FriendlyId
-
-#  friendly_id :id, use: :slugged
-
   def index
     @projects = Project.page(params[:page]).per(params[:per_page])
   end
@@ -23,11 +19,9 @@ class Web::ProjectsController < Web::ProtectedController
   def create
     @project = Project.new params[:project]
 
-    owner = Role.find_by_name(:owner)
-
-    @project.members.build :user => current_user, :role => owner
-
     if @project.save
+      @project.members.create :user => current_user, :role => Role.owner
+
       redirect_to @project, notice: t('.created')
     else
       render action: "new"

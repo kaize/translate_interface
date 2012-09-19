@@ -46,6 +46,8 @@ class Web::ProjectsControllerTest < ActionController::TestCase
 
     post :create, project: project_attributes
 
+    assert_response :redirect
+
     project = Project.last
 
     assert_equal distinctive_name, project.name
@@ -75,7 +77,7 @@ class Web::ProjectsControllerTest < ActionController::TestCase
 
     assert_response :redirect
 
-    assert Project.find_by_name(project.name).nil?
+    assert !Project.exists?(project)
   end
 
 end

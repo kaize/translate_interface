@@ -1,10 +1,7 @@
 class Web::UsersController < Web::ProtectedController
 
   def index
-    @users = User.
-        order("name").
-        page(params[:page]).
-        per(params[:per_page])
+    @users = User.web.page(params[:page]).per(params[:per_page])
   end
 
   def show
