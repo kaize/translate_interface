@@ -1,4 +1,8 @@
 class Role < ActiveRecord::Base
+  include UsefullScopes
+
+  scope :web, by_name
+
   attr_accessible :name
 
   has_many :members

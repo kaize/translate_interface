@@ -1,5 +1,8 @@
 class Member < ActiveRecord::Base
-  attr_accessible :project_id, :role_id, :user_id
+  include UsefullScopes
+
+  scope :web, all
+
   attr_accessible :project, :role, :user
 
   belongs_to :project

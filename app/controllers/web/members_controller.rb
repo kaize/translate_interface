@@ -17,7 +17,7 @@ class Web::MembersController < Web::ProtectedController
   end
 
   def create
-    @member = Member.new params[:member]
+    @member = MemberEditType.new params[:member]
 
     if @member.save
       redirect_to @member, notice: t('.created')
@@ -27,9 +27,7 @@ class Web::MembersController < Web::ProtectedController
   end
 
   def update
-    @member = Member.find(params[:id])
-
-    puts "#{params[:member].inspect}\n"
+    @member = MemberEditType.find(params[:id])
 
     if @member.update_attributes(params[:member])
       redirect_to @member, notice: t('.updated')

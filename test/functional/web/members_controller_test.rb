@@ -8,9 +8,6 @@ class Web::MembersControllerTest < ActionController::TestCase
 
   test "should get index" do
     member = create(:member)
-
-    puts "#{member.inspect}\n"
-
     get :index
     assert_response :success
     assert_not_nil assigns(:members)
@@ -34,7 +31,7 @@ class Web::MembersControllerTest < ActionController::TestCase
 
     assert_response :redirect
 
-    member = Member.last
+    member = MemberEditType.last
 
     assert_not_nil member
   end
@@ -47,9 +44,10 @@ class Web::MembersControllerTest < ActionController::TestCase
 
   test "should update member" do
     member = create :member
-    user = create :user
 
-    member_attributes = {:user_id => user.id}
+    role = Role.find_by_name("translator")
+
+    member_attributes = {:role_id => role.id}
 
     post :update, id: member, member: member_attributes
 
@@ -57,7 +55,7 @@ class Web::MembersControllerTest < ActionController::TestCase
 
     member.reload
 
-    assert_equal member_attributes[:user_id], member.user_id
+    assert_equal member_attributes[:role_id], member.role.id
   end
 
   test "should destroy member" do
