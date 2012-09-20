@@ -5,7 +5,7 @@ Localizer::Application.routes.draw do
 
     resources :members
     resources :keys
-    resources :project_locales
+    resources :project_locales, only: [:new, :create, :destroy, :index, :show]
 
     resource :session, only: [:new, :create, :destroy]
 

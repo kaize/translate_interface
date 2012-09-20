@@ -13,7 +13,6 @@
       %th= t('.name')
       %th
       %th
-      %th
 
   %tbody
     - @project_locales.each do |project_locale|
@@ -21,7 +20,6 @@
         %td= project_locale.project.try(:name)
         %td= project_locale.locale.try(:name)
         %td= link_to 'Show', project_locale
-        %td= link_to 'Edit', edit_project_locale_path(project_locale)
         %td= link_to 'Destroy', project_locale, :confirm => 'Are you sure?', :method => :delete
 
 = paginate(@project_locales)
