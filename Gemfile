@@ -49,4 +49,4 @@ gem 'unicorn-rails'
 
 #gem 'friendly_id'
 
-gem 'usefull_scopes', git: 'git@github.com:kaize/usefull_scopes.git'
+gem 'usefull_scopes', git: 'git://github.com/kaize/translate_interface.git'
