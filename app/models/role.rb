@@ -3,6 +3,8 @@ class Role < ActiveRecord::Base
 
   has_many :members
 
+  scope :not_owner, where("name != 'owner'")
+
   def self.owner
     self.find_by_name :owner
   end

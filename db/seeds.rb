@@ -8,4 +8,4 @@
 
 Role.create [{name: "owner"}, {name: "translator"}]
 
-Locale.create [{name: :en}, {name: :us}, {name :ru}]
+Locale.create [{name: :en}, {name: :us}, {name: :ru}]

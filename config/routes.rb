@@ -3,6 +3,8 @@ Localizer::Application.routes.draw do
     resources :users
     resources :projects
 
+    resources :members
+
     resource :session, only: [:new, :create, :destroy]
 
     root to: 'welcome#index'
