@@ -13,7 +13,7 @@ class Web::ProjectLocalesController < Web::ProtectedController
   end
 
   def create
-    @project_locale = ProjectLocaleEditType.new params[:project_locale]
+    @project_locale = ProjectLocaleEditType.new params[:project_locale_id]
 
     if @project_locale.save
       redirect_to @project_locale, notice: t('.created')
