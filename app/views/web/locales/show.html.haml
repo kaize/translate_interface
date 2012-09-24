@@ -1,0 +1,12 @@
+.page-header
+  = link_to locales_path, :class => 'btn' do
+    %i.icon-list-alt
+    = t('simple_form.back')
+  = link_to edit_locale_path(@locale), :class => 'btn btn-primary' do
+    %i.icon-pencil.icon-white
+    = t('simple_form.edit')
+  %h1= t('simple_form.locale.show.listing_locales')
+
+%dl
+  %dt= t('.name')
+  %dd= @locale.name

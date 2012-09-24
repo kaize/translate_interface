@@ -1,4 +1,4 @@
-class Web::UsersController < Web::ProtectedController
+class Web::Admin::UsersController < Web::ProtectedController
 
   def index
     @users = User.web.page(params[:page]).per(params[:per_page])
@@ -8,24 +8,8 @@ class Web::UsersController < Web::ProtectedController
     @user = User.find(params[:id])
   end
 
-  def new
-    @user = User.new
-  end
-
   def edit
     @user = User.find(params[:id])
-  end
-
-  def create
-    @user = UserEditType.new(params[:user])
-
-    if @user.save
-      UserRegistrationMailer.registration_email @user
-
-      redirect_to @user, notice: t('.created')
-    else
-      render action: "new"
-    end
   end
 
   def update

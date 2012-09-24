@@ -2,6 +2,7 @@ Localizer::Application.routes.draw do
   scope module: :web do
     resources :users
     resources :projects
+    resources :locales
 
     resources :members
     resources :keys
