@@ -7,4 +7,4 @@ script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
 before_script:
   - psql -c 'create database localizer_test' -U postgres
-  - cp config/database.sample.yml config/database.yml
+  - cp config/database.sample.yml config/database.yml # why this line didn't god to teh git?

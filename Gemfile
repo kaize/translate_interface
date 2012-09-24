@@ -50,3 +50,5 @@ gem 'unicorn-rails'
 #gem 'friendly_id'
 
 gem 'usefull_scopes', git: 'https://github.com/kaize/usefull_scopes.git'
+
+gem 'ya_acl'

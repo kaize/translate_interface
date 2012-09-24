@@ -164,6 +164,7 @@ GEM
     unicorn-rails (0.0.1)
       rack
       unicorn
+    ya_acl (0.0.6)
 
 PLATFORMS
   ruby
@@ -189,3 +190,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn-rails
   usefull_scopes!
+  ya_acl
