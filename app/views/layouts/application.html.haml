@@ -26,8 +26,12 @@
             %ul.nav
               %li.active
                 %a{:href => root_path}= t 'application.home'
-              %li
-                %a{:href => users_path}= t 'application.users_list'
+              - if can? :users
+                %li
+                  %a{:href => users_path}= t 'application.users_list'
+              - if can? :projects
+                %li
+                  %a{:href => projects_path}= t 'application.users_list'
               %li
                 - if signed_in? then
                   = link_to 'Log out', session_path, method: :delete

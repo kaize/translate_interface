@@ -1,7 +1,8 @@
 .page-header
-  = link_to new_key_path, :class => 'btn btn-primary' do
-    %i.icon-plus.icon-white
-    = t '.new'
+  - if can? :new_key
+    = link_to new_key_path, :class => 'btn btn-primary' do
+      %i.icon-plus.icon-white
+      = t '.new'
   %h1= t '.listing'
 
 = paginate(@keys)
@@ -20,8 +21,9 @@
       %tr
         %td= key.project.try(:name)
         %td= key.name
+      - if can? :key, key
         %td= link_to 'Show', key
-        %td= link_to 'Edit', edit_key_path(key)
+      - if can? :key, key, :destroy
         %td= link_to 'Destroy', key, :confirm => 'Are you sure?', :method => :delete
 
 = paginate(@keys)

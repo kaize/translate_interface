@@ -1,4 +1,5 @@
 .page-header
+- if can? :project_locales
   = link_to project_locales_path, :class => 'btn' do
     %i.icon-list-alt
     = t('simple_form.back')

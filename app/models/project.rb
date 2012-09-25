@@ -8,9 +8,15 @@ class Project < ActiveRecord::Base
   has_many :keys
   has_many :members
 
+  has_many :translations, :through => :keys
+
   scope :web, by_name
 
   def owner
     @owner ||= User.owners_for_project(self).last
+  end
+
+  def project
+    self # for .project response in User.current_role_for
   end
 end

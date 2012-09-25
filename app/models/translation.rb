@@ -6,4 +6,10 @@ class Translation < ActiveRecord::Base
   belongs_to :key
   belongs_to :locale
   belongs_to :member
+
+  # belongs_to :project, :through => :key
+
+  def project
+    key.project
+  end
 end

@@ -37,28 +37,6 @@ class Web::LocalesControllerTest < ActionController::TestCase
     assert_not_nil locale
   end
 
-  test "should get edit" do
-    locale = create :locale
-    get :edit, id: locale
-    assert_response :success
-  end
-
-  test "should update locale" do
-    locale = create :locale
-
-    name = "the other name"
-
-    locale_attributes = {:name => name}
-
-    post :update, id: locale, locale: locale_attributes
-
-    assert_response :redirect
-
-    locale.reload
-
-    assert_equal name, locale.name
-  end
-
   test "should destroy locale" do
     locale = create(:locale)
 

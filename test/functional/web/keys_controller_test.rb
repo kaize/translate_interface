@@ -37,28 +37,6 @@ class Web::KeysControllerTest < ActionController::TestCase
     assert_not_nil key
   end
 
-  test "should get edit" do
-    key = create :key
-    get :edit, id: key
-    assert_response :success
-  end
-
-  test "should update key" do
-    key = create :key
-
-    name = "the other name"
-
-    key_attributes = {:name => name}
-
-    post :update, id: key, key: key_attributes
-
-    assert_response :redirect
-
-    key.reload
-
-    assert_equal name, key.name
-  end
-
   test "should destroy key" do
     key = create(:key)
 

@@ -1,7 +1,7 @@
 class Role < ActiveRecord::Base
   include UsefullScopes
 
-  scope :web, by_name
+  #scope :web, by_name
 
   attr_accessible :name
 
@@ -11,5 +11,13 @@ class Role < ActiveRecord::Base
 
   def self.owner
     self.find_by_name :owner
+  end
+
+  def self.user
+    self.find_by_name :user
+  end
+
+  def self.guest
+    self.find_by_name :guest
   end
 end

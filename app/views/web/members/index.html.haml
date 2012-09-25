@@ -1,4 +1,5 @@
 .page-header
+- if can? :new_member
   = link_to new_member_path, :class => 'btn btn-primary' do
     %i.icon-plus.icon-white
     = t '.new'
@@ -22,8 +23,11 @@
         %td= member.user.try(:email)
         %td= member.project.try(:name)
         %td= member.role.try(:name)
-        %td= link_to 'Show', member
-        %td= link_to 'Edit', edit_member_path(member)
-        %td= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete
+        - if can? :member, member
+          %td= link_to 'Show', member
+        - if can? :edit_member, member
+          %td= link_to 'Edit', edit_member_path(member)
+        - if can? :member, member, :destroy
+          %td= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete
 
 = paginate(@members)

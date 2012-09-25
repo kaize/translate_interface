@@ -1,10 +1,12 @@
 .page-header
-  = link_to users_path, :class => 'btn' do
-    %i.icon-list-alt
-    = t('simple_form.back')
-  = link_to edit_user_path(@user), :class => 'btn btn-primary' do
-    %i.icon-pencil.icon-white
-    = t('simple_form.edit')
+  - if can? :users
+    = link_to users_path, :class => 'btn' do
+      %i.icon-list-alt
+      = t('simple_form.back')
+  - if can? :edit_user, @user
+    = link_to edit_user_path(@user), :class => 'btn btn-primary' do
+      %i.icon-pencil.icon-white
+      = t('simple_form.edit')
   %h1= t('simple_form.user.show.listing_users')
 
 %dl

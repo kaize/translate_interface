@@ -1,7 +1,8 @@
 .page-header
-  = link_to new_project_locale_path, :class => 'btn btn-primary' do
-    %i.icon-plus.icon-white
-    = t '.new'
+  - if can? :new_project_locale
+    = link_to new_project_locale_path, :class => 'btn btn-primary' do
+      %i.icon-plus.icon-white
+      = t '.new'
   %h1= t '.listing'
 
 = paginate(@project_locales)
@@ -19,7 +20,9 @@
       %tr
         %td= project_locale.project.try(:name)
         %td= project_locale.locale.try(:name)
-        %td= link_to 'Show', project_locale
-        %td= link_to 'Destroy', project_locale, :confirm => 'Are you sure?', :method => :delete
+        - if can? :project, project_locale
+          %td= link_to 'Show', project_locale
+        - if can? :project_locale, project_locale, :destroy
+          %td= link_to 'Destroy', project_locale, :confirm => 'Are you sure?', :method => :delete
 
 = paginate(@project_locales)

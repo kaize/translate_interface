@@ -6,6 +6,8 @@ SimpleCov.start('rails') if ENV["COVERAGE"]
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+load "#{Rails.root}/db/seeds.rb"
+
 #require 'factory_girl_rails'
 #include FactoryGirl::Syntax::Methods
 

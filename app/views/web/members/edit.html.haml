@@ -1,10 +1,12 @@
 .page-header
-  = link_to members_path, :class => 'btn' do
-    %i.icon-list-alt
-    = t('simple_form.back')
-  = link_to @members, :class => 'btn btn-primary' do
-    %i.icon-info-sign.icon-white
-    = t('simple_form.show')
+  - if can? :members
+    = link_to members_path, :class => 'btn' do
+      %i.icon-list-alt
+      = t('simple_form.back')
+  - if can? :member, @member
+    = link_to @member, :class => 'btn btn-primary' do
+      %i.icon-info-sign.icon-white
+      = t('simple_form.show')
   %h1= t('simple_form.project.edit')
 
 = render 'form'

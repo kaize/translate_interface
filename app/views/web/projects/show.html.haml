@@ -1,10 +1,12 @@
 .page-header
-  = link_to projects_path, :class => 'btn' do
-    %i.icon-list-alt
-    = t('simple_form.back')
-  = link_to edit_project_path(@project), :class => 'btn btn-primary' do
-    %i.icon-pencil.icon-white
-    = t('simple_form.edit')
+  - if can? :projects, @project
+    = link_to projects_path, :class => 'btn' do
+      %i.icon-list-alt
+      = t('simple_form.back')
+  - if can? :edit_project, @project
+    = link_to edit_project_path(@project), :class => 'btn btn-primary' do
+      %i.icon-pencil.icon-white
+      = t('simple_form.edit')
   %h1= t('simple_form.project.show.listing_projects')
 
 %dl
