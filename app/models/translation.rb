@@ -12,4 +12,15 @@ class Translation < ActiveRecord::Base
   def project
     key.project
   end
+
+  state_machine :state, :initial => :unapproved do
+    event :approve do
+      transition :initial => :approved
+    end
+
+    event :reject do
+      transition :initial => :rejected
+    end
+  end
+
 end

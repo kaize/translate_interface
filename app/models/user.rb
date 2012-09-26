@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   }
 
   def roles_for object
+
     superaccess = self.admin? ? Role.admin : Role.user
 
     per_project = if object.respond_to? :project
@@ -25,6 +26,8 @@ class User < ActiveRecord::Base
       Role.user
     end
 
-    [superaccess, per_project].collect { |role| role.name }
+    [superaccess, per_project].collect do |role|
+      role.name
+    end
   end
 end

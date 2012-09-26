@@ -6,6 +6,7 @@
     = f.collection_select :user,    User.web,       :id, :email
     = f.collection_select :project, Project.web,    :id, :name
     = f.collection_select :role,    Role.not_owner, :id, :name
+    = f.input :state_event, :as => :state, :include_blank => @member.human_state_name
 
   .form-actions
     = f.button :submit, :class => "btn-primary"

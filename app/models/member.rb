@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
   include UsefullScopes
 
-  attr_accessible :project, :role, :user
+  attr_accessible :project, :role, :user, :state
 
   belongs_to :project
   belongs_to :user
@@ -15,13 +15,27 @@ class Member < ActiveRecord::Base
 
   scope :owner_for, lambda {|project| owners.where :project_id => project}
 
+  state_machine :state, :initial => :unconfirmed do
+    event :confirm do
+      transition :unconfirmed => :active
+    end
+
+    event :block do
+      transition :active => :blocked
+    end
+
+    event :unblock do
+      transition :blocked => :active
+    end
+  end
+
   def self.participation_for user, project
     lookup = Member.where(:user_id => user).where(:project_id => project)
 
     if lookup.empty?
       nil
     else
-      lookup.last
+      lookup.last.role
     end
   end
 end

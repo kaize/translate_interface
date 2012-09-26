@@ -45,6 +45,14 @@ group :test do
   gem 'tconsole'
 end
 
+group :development do
+  # Deploy with Capistrano
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+end
+
 gem 'unicorn-rails'
 
 #gem 'friendly_id'
@@ -52,3 +60,7 @@ gem 'unicorn-rails'
 gem 'usefull_scopes', git: 'https://github.com/kaize/usefull_scopes.git'
 
 gem 'ya_acl'
+
+gem 'state_machine'
+
+gem 'untranslated', git: 'git://github.com/Heimdell/untranslated.git'
