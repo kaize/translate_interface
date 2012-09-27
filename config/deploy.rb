@@ -14,7 +14,7 @@ default_run_options[:pty] = true
 namespace :deploy do
   desc "Symlinks the database.yml"
   task :symlink_db, :roles => :app do
-    run "ln -nfs #{release_path}/config/database.yml.sample #{release_path}/config/database.yml"
+    run "ln -nfs #{release_path}/config/database.sample.yml #{release_path}/config/database.yml"
   end
   desc "Seed database data"
   task :seed_data do
