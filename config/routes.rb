@@ -1,4 +1,4 @@
-Localizer::Application.routes.draw do
+TranslateInterface::Application.routes.draw do
   scope module: :web do
     resources :users
     resources :projects
