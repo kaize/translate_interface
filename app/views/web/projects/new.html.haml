@@ -1,0 +1,8 @@
+.page-header
+- if can? :projects
+  = link_to projects_path, :class => 'btn' do
+    %i.icon-list-alt
+    = t('simple_form.back')
+  %h1= t('simple_form.user.new')
+
+= render 'form'

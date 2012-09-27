@@ -1,0 +1,10 @@
+
+= simple_form_for(@project_locale, :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.collection_select :project, Project.web, :id, :name
+    = f.collection_select :locale,  Locale.web,  :id, :name
+
+  .form-actions
+    = f.button :submit, :class => "btn-primary"

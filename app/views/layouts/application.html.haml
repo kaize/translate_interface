@@ -7,10 +7,6 @@
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
 
-    = phrase_javascript('f3bd716ae5dad07e8170ab2b0553e30e')
-
-    <script> var phrase_auth_token = 'f3bd716ae5dad07e8170ab2b0553e30e'; (function() { var phraseapp = document.createElement('script'); phraseapp.type = 'text/javascript'; phraseapp.async = true; phraseapp.src = ['https://', 'phraseapp.com/assets/phrase/0.1/app.js?', new Date().getTime()].join(''); var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(phraseapp, s); })(); </script>
-
     / Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if lt IE 9]
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,13 +25,16 @@
           .nav-collapse
             %ul.nav
               %li.active
-                %a{:href => "/welcome#index"}= t 'application.home'
+                %a{:href => root_path}= t 'application.home'
+              - if can? :users
+                %li
+                  %a{:href => users_path}= t 'application.users_list'
+              - if can? :projects
+                %li
+                  %a{:href => projects_path}= t 'application.users_list'
               %li
-                %a{:href => "#about"}= t 'application.about'
-              %li
-                %a{:href => "/users"}= t 'application.users_list'
-              %li
-                =link_to 'Log out', session_path, method: :delete
+                - if signed_in? then
+                  = link_to 'Log out', session_path, method: :delete
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do
@@ -44,4 +43,4 @@
       = yield
       %hr
       %footer
-        %p &copy; Company 2012
+        %p= "&copy;" + t("company") + t("current_year")

@@ -8,7 +8,6 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,15 +23,14 @@ end
 gem 'jquery-rails'
 
 gem 'phrase'
-gem 'i18n'
 
 gem 'haml-rails'
-
-gem 'bootstrap-generators', git: 'https://github.com/decioferreira/bootstrap-generators.git'
 
 gem 'twitter-bootstrap-rails'
 
 gem 'simple_form'
+
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -47,3 +45,22 @@ group :test do
   gem 'tconsole'
 end
 
+group :development do
+  # Deploy with Capistrano
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+end
+
+gem 'unicorn-rails'
+
+#gem 'friendly_id'
+
+gem 'usefull_scopes', git: 'https://github.com/kaize/usefull_scopes.git'
+
+gem 'ya_acl'
+
+gem 'state_machine'
+
+gem 'untranslated', git: 'git://github.com/Heimdell/untranslated.git'

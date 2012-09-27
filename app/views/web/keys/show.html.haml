@@ -1,0 +1,10 @@
+.page-header
+  - if can? :keys
+    = link_to keys_path, :class => 'btn' do
+      %i.icon-list-alt
+      = t('simple_form.back')
+  %h1= t('.listing')
+
+%dl
+  %dt= t('.name')
+  %dd= @key.name

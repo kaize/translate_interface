@@ -6,8 +6,6 @@ class Web::SessionsController < Web::ApplicationController
     user = UserEditType.find_by_email(params[:user][:email])
 
     if user.try(:authenticate, params[:user][:password])
-      reset_session
-
       sign_in(user)
 
       flash.now[:notice] = t('login.successful')
