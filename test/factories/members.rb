@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :member do
     user
-    role
-    project
+    #role :owner
   end
 end

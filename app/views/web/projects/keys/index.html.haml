@@ -1,0 +1,29 @@
+.page-header
+  - if can? :new_project_key
+    = link_to new_project_key_path, :class => 'btn btn-primary' do
+      %i.icon-plus.icon-white
+      = t '.new'
+  %h1= t '.listing'
+
+= paginate(@keys)
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= t('.project')
+      %th= t('.name')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @keys.each do |key|
+      %tr
+        %td= key.project.try(:name)
+        %td= key.name
+      - if can? :key, :project_key
+        %td= link_to 'Show', url_for([key.project, key])
+      - if can? :key, :project_key, :destroy
+        %td= link_to 'Destroy', url_for([key.project, key]), :confirm => 'Are you sure?', :method => :delete
+
+= paginate(@keys)

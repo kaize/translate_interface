@@ -1,0 +1,14 @@
+.page-header
+  - if can? :project_members
+    = link_to project_members_path, :class => 'btn' do
+      %i.icon-list-alt
+      = t('simple_form.back')
+  - if can? :edit_project_member, @member
+    = link_to edit_project_member_path(@member), :class => 'btn btn-primary' do
+      %i.icon-pencil.icon-white
+      = t('simple_form.edit')
+  %h1= t('simple_form.member.show.listing_members')
+
+%dl
+  %dt= t('.name')
+  %dd= @member.user.try(:name)

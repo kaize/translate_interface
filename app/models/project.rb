@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  include UsefullScopes
+  include ProjectRepository
 
   attr_accessible :name
   attr_accessor :creator
@@ -10,10 +10,8 @@ class Project < ActiveRecord::Base
 
   has_many :translations, :through => :keys
 
-  scope :web, by_name
-
   def owner
-    @owner ||= User.owners_for_project(self).last
+    @owner ||= self.members.where(:role_id => Role.owner).last
   end
 
   def project

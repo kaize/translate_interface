@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include UsefullScopes
+  include UserRepository
 
   attr_accessible :email, :name, :password
 
@@ -7,12 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :members
   has_many :projects, :through => :members
-
-  scope :web, by_email
-
-  scope :owners_for_project, lambda { |project|
-    includes(:members).where(:members => {:role_id => Role.owner.id, :project_id => project.id})
-  }
 
   def roles_for object
 

@@ -6,11 +6,9 @@ module AccessHelper
   end
 
   def can? route_method, object = nil, action = nil, options = {}
-#    p "Can-case"
-#    p route_method
-#    p object
-#    p action
-#    p ""
+
+    return true # not needed now
+
     url_options = send "hash_for_#{route_method}_path"
     resource = "#{url_options[:controller].to_s.camelize}Controller"
     privilege = action || url_options[:action]

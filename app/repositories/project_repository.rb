@@ -1,8 +1,8 @@
-module KeyRepository
+module ProjectRepository
   extend ActiveSupport::Concern
   include UsefullScopes
 
   included do
-    scope :web, by_name
+    scope :web, ->{by_name}
   end
 end

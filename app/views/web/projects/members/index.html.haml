@@ -1,0 +1,33 @@
+.page-header
+- if can? :new_project_member
+  = link_to new_project_member_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    = t '.new'
+  %h1= t '.listing'
+
+= paginate(@members)
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= t('.project')
+      %th= t('.user')
+      %th= t('.role')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @members.each do |member|
+      %tr
+        %td= member.user.try(:email)
+        %td= member.project.try(:name)
+        %td= member.role.try(:name)
+        - if can? :member, member
+          %td= link_to 'Show', url_for([member.project, member])
+        - if can? :edit_member, member
+          %td= link_to 'Edit', edit_project_member_path(member.project, member)
+        - if can? :member, member, :destroy
+          %td= link_to 'Destroy', url_for([member.project, member]), :confirm => 'Are you sure?', :method => :delete
+
+= paginate(@members)

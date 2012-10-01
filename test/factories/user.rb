@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :user, :class => UserEditType do
     password              "sekret"
     password_confirmation "sekret"
+    name
     email
   end
 

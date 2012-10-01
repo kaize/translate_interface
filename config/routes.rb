@@ -1,12 +1,20 @@
-Localizer::Application.routes.draw do
+TranslateInterface::Application.routes.draw do
   scope module: :web do
     resources :users
-    resources :projects
-    resources :locales
 
-    resources :members
-    resources :keys
-    resources :project_locales, only: [:new, :create, :destroy, :index, :show]
+    resources :projects do
+      scope module: :projects do
+        resources :members
+        resources :project_locales, only: [:new, :create, :destroy, :index, :show]
+        resources :keys, only: [:new, :create, :destroy, :index, :show] do
+          scope module: :keys do
+            resources :translations, only: [:new, :create, :destroy, :index, :show]
+          end
+        end
+      end
+    end
+
+    resources :locales
 
     resource :session, only: [:new, :create, :destroy]
 

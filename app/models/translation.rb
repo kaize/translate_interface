@@ -1,5 +1,4 @@
 class Translation < ActiveRecord::Base
-  include UsefullScopes
 
   attr_accessible :data, :key, :locale, :member
 
@@ -9,9 +8,7 @@ class Translation < ActiveRecord::Base
 
   # belongs_to :project, :through => :key
 
-  def project
-    key.project
-  end
+  delegate :project, :to => :key
 
   state_machine :state, :initial => :unapproved do
     event :approve do

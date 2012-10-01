@@ -56,7 +56,7 @@ YaAcl::Builder.build do
         privilege :destroy
       end
 
-      resource 'Web::KeysController', [:translator] do
+      resource 'Web::Projects::KeysController', [:translator] do
         privilege :index, [:translator]
         privilege :show, [:translator]
         privilege :new
@@ -64,7 +64,7 @@ YaAcl::Builder.build do
         privilege :destroy
       end
 
-      resource 'Web::TranslationsController', [:translator] do
+      resource 'Web::Projects::TranslationsController', [:translator] do
         privilege :new, [:translator]
         privilege :create, [:translator]
         privilege :index, [:translator]
@@ -72,7 +72,7 @@ YaAcl::Builder.build do
         privilege :destroy
       end
 
-      resource 'Web::ProjectLocalesController', [:translator] do
+      resource 'Web::Projects::ProjectLocalesController', [:translator] do
         privilege :new
         privilege :create
         privilege :index, [:translator]
@@ -80,13 +80,13 @@ YaAcl::Builder.build do
         privilege :destroy
       end
 
-      resource 'Web::MembersController' do
+      resource 'Web::Projects::MembersController', [:translator] do
         privilege :new
         privilege :create
         privilege :edit
         privilege :update
-        privilege :index
-        privilege :show
+        privilege :index, [:translator]
+        privilege :show, [:translator]
         privilege :destroy
       end
     end

@@ -19,8 +19,8 @@ class Web::ProjectsController < Web::ProtectedController
   def create
     @project = Project.new params[:project]
 
+    @project.members.build :user => current_user, :role => Role.owner
     if @project.save
-      @project.members.create :user => current_user, :role => Role.owner
 
       redirect_to @project, notice: t('.created')
     else

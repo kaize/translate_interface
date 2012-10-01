@@ -1,0 +1,11 @@
+
+= simple_form_for([@member.project, @member], :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.association :role, :collection => Role.not_owner
+    = f.input :state_event, :as => :state, :include_blank => @member.human_state_name
+
+  .form-actions
+    = f.button :submit, :class => "btn-primary"

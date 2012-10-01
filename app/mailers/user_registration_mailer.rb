@@ -6,6 +6,6 @@ class UserRegistrationMailer < ActionMailer::Base
   def registration_email user
     @user = user
     @url = "http://example.com/login"
-    mail(to: user.email, :subject => "I could sent emails, can you imagine that?")
+    mail(to: user.email, :subject => t(".text"))
   end
 end

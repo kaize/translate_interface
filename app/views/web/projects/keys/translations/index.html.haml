@@ -1,0 +1,29 @@
+.page-header
+  - if can? :new_project_Key_translation
+    = link_to new_project_key_translation_path, :class => 'btn btn-primary' do
+      %i.icon-plus.icon-white
+      = t '.new'
+  %h1= t '.listing'
+
+= paginate(@translations)
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th= t('.project')
+      %th= t('.name')
+      %th
+      %th
+      %th
+
+  %tbody
+    - @translations.each do |translation|
+      %tr
+        %td= translation.key.try(:name)
+        %td= translation.data
+      - if can? :project_key_translation, translation
+        %td= link_to 'Show', url_for([translation.project, translation.key, translation])
+      - if can? :project_key_translation, translation, :destroy
+        %td= link_to 'Destroy', url_for([translation.project, translation.key, translation]), :confirm => 'Are you sure?', :method => :delete
+
+= paginate(@translations)

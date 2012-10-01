@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+  include AccessHelper
   include UsefullScopes
 
   #scope :web, by_name
@@ -9,15 +10,15 @@ class Role < ActiveRecord::Base
 
   scope :not_owner, where("name != 'owner'")
 
-  def self.owner
-    self.find_by_name :owner
-  end
+  singleton_class.class_eval do
+    roles = Role.new.acl.roles
 
-  def self.user
-    self.find_by_name :user
-  end
+    roles.each do |r, _|
+      role = Role.find_by_name(r)
 
-  def self.guest
-    self.find_by_name :guest
+      define_method r do
+        role
+      end
+    end
   end
 end

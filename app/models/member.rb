@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  include UsefullScopes
+  include MemberRepository
 
   attr_accessible :project, :role, :user, :state
 
@@ -10,10 +10,6 @@ class Member < ActiveRecord::Base
   validates :user_id, :uniqueness => { :scope => [:project_id, :role_id] }
 
   has_many :translations
-
-  scope :owners, where(:role_id => Role.owner)
-
-  scope :owner_for, lambda {|project| owners.where :project_id => project}
 
   state_machine :state, :initial => :unconfirmed do
     event :confirm do

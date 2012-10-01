@@ -1,4 +1,6 @@
-class Web::UsersController < Web::ProtectedController
+class Web::UsersController < Web::ApplicationController
+
+  before_filter 'authenticate_user!', :only => [:index, :show, :edit, :update, :delete]
 
   def index
     @users = User.web.page(params[:page]).per(params[:per_page])

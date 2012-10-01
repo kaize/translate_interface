@@ -1,3 +1,8 @@
-class KeyRepository
-  # To change this template use File | Settings | File Templates.
+module KeyRepository
+  extend ActiveSupport::Concern
+  include UsefullScopes
+
+  included do
+    scope :web, ->{by_name}
+  end
 end

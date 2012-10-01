@@ -5,7 +5,7 @@ FactoryGirl.define do
     name "translator"
   end
 
-  factory :owner, :class => Role do
+  factory :owner, :class => RoleEditType do
     name "owner"
   end
 end

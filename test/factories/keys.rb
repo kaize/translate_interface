@@ -3,6 +3,9 @@
 FactoryGirl.define do
   factory :key do
     name "MyString"
-    project_id 1
+
+    after :create do |k|
+      create :translation, :key => k
+    end
   end
 end

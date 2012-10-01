@@ -51,7 +51,7 @@ class Web::ProjectsControllerTest < ActionController::TestCase
     project = Project.last
 
     assert_equal distinctive_name, project.name
-    assert_equal user, project.owner
+    assert_equal user, project.owner.user
   end
 
   test "should get edit" do

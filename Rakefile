@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Localizer::Application.load_tasks
+TranslateInterface::Application.load_tasks

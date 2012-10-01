@@ -1,7 +1,5 @@
 class Locale < ActiveRecord::Base
-  include UsefullScopes
-
-  scope :web, by_name
+  include LocaleRepository
 
   attr_accessible :name
 

@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :project_locale do
     locale
-    project
   end
 end
