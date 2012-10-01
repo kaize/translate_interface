@@ -51,6 +51,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'capistrano-ext'
   gem 'capistrano_colors'
+  gem 'capi'
 end
 
 gem 'unicorn-rails'
